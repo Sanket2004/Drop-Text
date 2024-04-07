@@ -12,6 +12,8 @@ function AddText() {
     const [text, setText] = useState('');
     const [uuid, setUUID] = useState('');
     const [uploadedAt, setUploadedAt] = useState('');
+    const navigate = useNavigate();
+
 
     const generateUUID = () => {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -51,16 +53,17 @@ function AddText() {
             uploadedAt: formattedDateTime,
         }).then(() => {
             console.log('Data added successfully');
+            // Redirect to the URL corresponding to the new data
+            navigate('/' + newUUID);
             toast.success("Your data has been added!");
-        })
-            .catch((error) => {
-                console.error('Error adding data: ', error);
-                toast.error("There was an issue with your submission.");
-            });
+        }).catch((error) => {
+            console.error('Error adding data: ', error);
+            toast.error("There was an issue with your submission.");
+        });
 
-        // Clear the input field
+        // Clear the input fields
         setText('');
-        setTitle('')
+        setTitle('');
         toast.success(newUUID + " is your unique ID", { icon: '👏', duration: 5000 });
     };
 

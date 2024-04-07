@@ -101,38 +101,36 @@ function DataPage() {
                 reverseOrder={false}
             />
 
-            <div className="bg-slate-950 text-white w-full h-screen">
-                <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-                    <header className="flex justify-between	pb-8">
-                        <Link to={'/'} className='bg-lime-500 h-8 w-8 rounded flex place-items-center justify-center'>
-                            <i className="fa-solid fa-chevron-left text-sm"></i>
-                        </Link>
-                        <Link onClick={handleCopyUrl}>
-                            <i className="fa-solid fa-arrow-up-from-bracket"></i>
-                        </Link>
-                    </header>
-                    {specificData ? (
-                        <>
-                            <h1 className="text-3xl font-bold sm:text-4xl mb-2 uppercase">{specificData.title}</h1>
-                            <p className='font-bold text-xs text-gray-300'>UPLOADED AT: {specificData.uploadedAt}</p>
-                            <div>
-                                <div>
-                                    <p className='font-bold mb-8 text-xl text-gray-300'>UUID: {specificData.uuid}</p>
-                                    {/* <p className='font mb-6 text-xl uppercase font-black'>text</p> */}
-                                    <div className='relative'>
-                                        <p className="w-full border-2 border-slate-800 bg-[#78787836] rounded p-4 text-xl whitespace-pre-wrap">{specificData.text}</p>
-                                        <button onClick={copyTextToClipboard} className='absolute top-0 right-0 '>
-                                            {copied ? (<i className="fa-solid fa-check p-4"></i>) : (<i className="fa-regular fa-copy p-4"></i>)}
-                                        </button>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </>
-                    ) : <h1>Loading..</h1>}
+<div className="bg-slate-950 text-white min-h-screen">
+    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <header className="flex justify-between pb-8">
+            <Link to={'/'} className='bg-lime-500 h-8 w-8 rounded flex place-items-center justify-center'>
+                <i className="fa-solid fa-chevron-left text-sm"></i>
+            </Link>
+            <Link onClick={handleCopyUrl}>
+                <i className="fa-solid fa-arrow-up-from-bracket"></i>
+            </Link>
+        </header>
+        {specificData ? (
+            <>
+                <h1 className="text-3xl font-bold sm:text-4xl mb-2 uppercase">{specificData.title}</h1>
+                <p className='font-bold text-xs text-gray-300'>UPLOADED AT: {specificData.uploadedAt}</p>
+                <div>
+                    <div>
+                        <p className='font-bold mb-8 text-xl text-gray-300'>UUID: {specificData.uuid}</p>
+                        <div className='relative'>
+                            <p className="w-full border-2 border-slate-800 bg-[#78787836] rounded p-4 text-xl whitespace-pre-wrap max-h-[55vh] overflow-auto">{specificData.text}</p>
+                            <button onClick={copyTextToClipboard} className='absolute top-0 right-0 '>
+                                {copied ? (<i className="fa-solid fa-check p-6"></i>) : (<i className="fa-regular fa-copy p-6"></i>)}
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </>
+        ) : <h1>Loading..</h1>}
+    </div>
+</div>
+
         </>
     )
 }
