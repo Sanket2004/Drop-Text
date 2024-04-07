@@ -104,8 +104,8 @@ function DataPage() {
             <div className="bg-slate-950 text-white w-full h-screen">
                 <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
                     <header className="flex justify-between	pb-8">
-                        <Link to={'/'}>
-                            <i className="fa-solid fa-chevron-left"></i>
+                        <Link to={'/'} className='bg-lime-500 h-8 w-8 rounded flex place-items-center justify-center'>
+                            <i className="fa-solid fa-chevron-left text-sm"></i>
                         </Link>
                         <Link onClick={handleCopyUrl}>
                             <i className="fa-solid fa-arrow-up-from-bracket"></i>

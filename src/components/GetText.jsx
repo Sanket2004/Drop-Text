@@ -23,11 +23,11 @@ function GetText() {
     return (
         <div className="bg-slate-950 text-white w-full h-screen">
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-            <header className="flex justify-between	pb-8">
-                        <Link to={'/'}>
-                            <i className="fa-solid fa-chevron-left"></i>
-                        </Link>
-                    </header>
+                <header className="flex justify-between	pb-8">
+                    <Link to={'/'} className='bg-lime-500 h-8 w-8 rounded flex place-items-center justify-center'>
+                        <i className="fa-solid fa-chevron-left text-sm"></i>
+                    </Link>
+                </header>
                 <div className="w-full px-8 mx-auto max-w-lg text-center absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
                     <h1 className="text-2xl font-bold sm:text-3xl mb-8">Get started today!</h1>
                     <form onSubmit={handleSubmit2} className='w-full'>

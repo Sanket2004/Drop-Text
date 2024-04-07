@@ -5,6 +5,7 @@ import DataPage from './components/DataPage';
 import AddText from './components/AddText';
 import GetText from './components/GetText';
 import Preloader from './components/Preloader'; // Assuming you have a Preloader component
+import ErrorPage from './components/ErrorPage'; // Assuming you have an ErrorPage component
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +27,8 @@ function App() {
           <Route path="/addText" element={<AddText />} />
           <Route path="/getText" element={<GetText />} />
           <Route path="/:uuidParam" element={<DataPage />} />
+          {/* Error page for unmatched routes */}
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       )}
     </Router>
