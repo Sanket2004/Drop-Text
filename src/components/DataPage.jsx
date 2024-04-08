@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from "react-router-dom";
 import db from '../firebase';
 import { Toaster, toast } from "react-hot-toast";
+import QRCode from './QRCode';
+
+
 
 
 function DataPage() {
@@ -93,6 +96,11 @@ function DataPage() {
             });
     };
 
+    const [currentUrl, setCurrentUrl] = useState('');
+
+    useEffect(() => {
+        setCurrentUrl(window.location.href);
+    }, []);
 
     return (
         <>
@@ -101,35 +109,45 @@ function DataPage() {
                 reverseOrder={false}
             />
 
-<div className="bg-slate-950 text-white min-h-screen">
-    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <header className="flex justify-between pb-8">
-            <Link to={'/'} className='bg-lime-500 h-8 w-8 rounded flex place-items-center justify-center'>
-                <i className="fa-solid fa-chevron-left text-sm"></i>
-            </Link>
-            <Link onClick={handleCopyUrl}>
-                <i className="fa-solid fa-arrow-up-from-bracket"></i>
-            </Link>
-        </header>
-        {specificData ? (
-            <>
-                <h1 className="text-3xl font-bold sm:text-4xl mb-2 uppercase">{specificData.title}</h1>
-                <p className='font-bold text-xs text-gray-300'>UPLOADED AT: {specificData.uploadedAt}</p>
-                <div>
-                    <div>
-                        <p className='font-bold mb-8 text-xl text-gray-300'>UUID: {specificData.uuid}</p>
-                        <div className='relative'>
-                            <p className="w-full border-2 border-slate-800 bg-[#78787836] rounded p-4 text-xl whitespace-pre-wrap max-h-[55vh] overflow-auto">{specificData.text}</p>
-                            <button onClick={copyTextToClipboard} className='absolute top-0 right-0 '>
-                                {copied ? (<i className="fa-solid fa-check p-6"></i>) : (<i className="fa-regular fa-copy p-6"></i>)}
-                            </button>
-                        </div>
-                    </div>
+            <div className="bg-slate-950 text-white min-h-screen">
+                <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+                    <header className="flex justify-between pb-8">
+                        <Link to={'/'} className='bg-lime-500 h-8 w-8 rounded flex place-items-center justify-center'>
+                            <i className="fa-solid fa-chevron-left text-sm"></i>
+                        </Link>
+                        <Link onClick={handleCopyUrl}>
+                            <i className="fa-solid fa-arrow-up-from-bracket"></i>
+                        </Link>
+                    </header>
+                    {specificData ? (
+                        <>
+                            <div className="flex justify-between">
+                                <div>
+                                    <h1 className="text-3xl font-bold sm:text-4xl mb-2 uppercase">{specificData.title}</h1>
+                                    <p className='font-bold text-xs text-gray-300'>UPLOADED AT: {specificData.uploadedAt}</p>
+                                    <p className='font-bold mb-8 text-l text-gray-300'>UUID: {specificData.uuid}</p>
+                                </div>
+                                <div className="w-18 hidden lg:flex items-start justify-right">
+                                    <QRCode url={currentUrl} />
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <div className='relative'>
+                                    <p className="w-full border-2 border-slate-800 bg-[#78787836] rounded p-4 text-xl whitespace-pre-wrap max-h-[55vh] overflow-auto">{specificData.text}</p>
+                                    <button onClick={copyTextToClipboard} className='absolute top-0 right-0 '>
+                                        {copied ? (<i className="fa-solid fa-check p-6"></i>) : (<i className="fa-regular fa-copy p-6"></i>)}
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="w-16 mt-8 lg:hidden">
+                                <QRCode url={currentUrl} />
+                            </div>
+                        </>
+                    ) : <h1 className='absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]'>Loading..</h1>}
                 </div>
-            </>
-        ) : <h1>Loading..</h1>}
-    </div>
-</div>
+            </div>
 
         </>
     )
