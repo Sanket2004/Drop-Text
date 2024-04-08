@@ -4,9 +4,9 @@ function Preloader() {
     return (
         <div className="w-full h-screen	bg-slate-950 overflow-hidden	">
 
-            <span class="relative flex h-16 w-16 absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-16 w-16 bg-lime-500"></span>
+            <span className="relative flex h-16 w-16 absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-16 w-16 bg-lime-500"></span>
             </span>
 
             <p className="text-sm absolute font-black bottom-0 text-gray-400 left-1/2 translate-x-[-50%] translate-y-[-50%]">DROP TEXT - 2024</p>

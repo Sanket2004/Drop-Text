@@ -31,9 +31,9 @@ function QRCode({ url }) {
             <Toaster position="top-right" reverseOrder={false} />
             <div className='flex items-center justify-center'>
                 {loading ? (
-                    <div className="w-14 h-14 bg-gray-700 rounded animate-pulse"></div> // Display loading indicator while fetching the QR code URL
+                    <div className="w-16 h-16 bg-gray-700 rounded animate-pulse"></div> // Display loading indicator while fetching the QR code URL
                 ) : (
-                    qrCodeUrl && <img className='border border-2 rounded bg-gray-600 w-14 h-14' src={qrCodeUrl} alt="QR Code" />
+                    qrCodeUrl && <img className='border border-2 rounded bg-gray-600 w-16 h-16' src={qrCodeUrl} alt="QR Code" />
                 )}
             </div>
         </>

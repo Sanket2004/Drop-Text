@@ -34,8 +34,6 @@ function DataPage() {
 
                     return;
                 }
-
-
                 // Assuming there's only one document matching the UUID
                 querySnapshot.forEach((doc) => {
                     // Update specificData state with the data from the document
@@ -121,33 +119,33 @@ function DataPage() {
                     </header>
                     {specificData ? (
                         <>
-                            <div className="flex justify-between">
-                                <div>
-                                    <h1 className="text-3xl font-bold sm:text-4xl mb-2 uppercase">{specificData.title}</h1>
+                            <div className="flex flex-row justify-between items-start">
+                                <div className="left">
+                                    <h1 className="bg-gradient-to-r from-lime-500 via-green-500 to-purple-600 bg-clip-text text-transparent text-3xl font-bold sm:text-4xl mb-2 uppercase">{specificData.title}</h1>
                                     <p className='font-bold text-xs text-gray-300'>UPLOADED AT: {specificData.uploadedAt}</p>
-                                    <p className='font-bold mb-8 text-l text-gray-300'>UUID: {specificData.uuid}</p>
+                                    <p className='font-bold mb-8 text-xs text-gray-300'>UUID: {specificData.uuid}</p>
                                 </div>
-                                <div className="w-18 hidden lg:flex items-start justify-right">
-                                    <QRCode url={currentUrl} />
-                                </div>
-
                             </div>
-
                             <div>
-                                <div className='relative'>
-                                    <p className="w-full border-2 border-slate-800 bg-[#78787836] rounded p-4 text-xl whitespace-pre-wrap max-h-[55vh] overflow-auto">{specificData.text}</p>
-                                    <button onClick={copyTextToClipboard} className='absolute top-0 right-0 '>
-                                        {copied ? (<i className="fa-solid fa-check p-6"></i>) : (<i className="fa-regular fa-copy p-6"></i>)}
-                                    </button>
+                                <div className='flex flex-col justify-center items-start'>
+                                    <div className='relative w-full mb-4'>
+                                        <p className="w-full border-2 border-slate-800 bg-[#78787836] rounded p-4 text-xl whitespace-pre-wrap max-h-[55vh] overflow-auto">{specificData.text}</p>
+                                        <button onClick={copyTextToClipboard} className='absolute top-0 right-0 '>
+                                            {copied ? (<i className="fa-solid fa-check p-6"></i>) : (<i className="fa-regular fa-copy p-6"></i>)}
+                                        </button>
+                                    </div>
+                                    <div className="flex flex-col place-items-center">
+                                        <QRCode url={currentUrl} />
+                                        <p className='font-black text-xs'>{specificData.uuid}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="w-16 mt-8 lg:hidden">
-                                <QRCode url={currentUrl} />
-                            </div>
+
                         </>
                     ) : <h1 className='absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]'>Loading..</h1>}
                 </div>
             </div>
+
 
         </>
     )
